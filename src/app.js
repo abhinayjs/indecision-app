@@ -1,14 +1,14 @@
 console.log("App.js is running");
 
+var app = {
+    title : 'Indecision App',
+    subtitle : 'React Tutorial'
+};
 var template = 
 (
     <div>
-        <h1>Indecision App</h1>
-        <p>This is JSX from app.js!!</p>
-        <ol>
-            <li>Item 1</li>
-            <li>Item 2</li>
-        </ol>
+        <h1>{app.title}</h1>
+        <p>{app.subtitle}</p>
     </div>
 );
 
@@ -17,12 +17,18 @@ var user = {
     age : 27,
     location : 'Missouri'
 };
+
+function getLocation (location) {
+    if (location) {
+        return <p>Location : {location}</p>
+    }
+};
 var template2 = 
 (
     <div>
         <h1>{user.name}</h1>
         <p>Age: {user.age}</p>
-        <p>Location: {user.location}</p>
+        {getLocation(user.location)}
     </div>
 );
 var appRoot = document.getElementById('app');
