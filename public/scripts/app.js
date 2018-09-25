@@ -1,56 +1,76 @@
 'use strict';
 
-//arguments object is no longer bound to arrow functions
+console.log("App.js is running");
 
-var add = function add(a, b) {
-    console.log(arguments);
-    return a + b;
+var app = {
+    title: 'Indecision App',
+    subtitle: 'React Tutorial',
+    options: ['One', 'Two']
+};
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        app.title
+    ),
+    React.createElement(
+        'p',
+        null,
+        app.subtitle && app.subtitle
+    ),
+    React.createElement(
+        'p',
+        null,
+        app.options.length > 0 ? 'Here are your options' : 'No options'
+    )
+);
+
+var count = 0;
+var addOne = function addOne() {
+    count++;
+    renderCounterApp();
+};
+var minusOne = function minusOne() {
+    count--;
+    renderCounterApp();
 };
 
-//throws error because arguments object cannot be accessed in arrow functions
-// const add = (a, b) => {
-//     console.log(arguments);
-//     return a + b;
-// }
-
-console.log(add(1, 1));
-
-//this keyword is no longer bound to arrow functions
-
-var user = {
-    name: 'Abhinay',
-    cities: ['New York', 'Columbia', 'Hyderabad'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        // console.log(this.name);
-        // console.log(this.cities);
-        // this.cities.forEach(function (city) { -- anonymous functions cannot access this
-        //     console.log(this.name + ' has lived in ' + city)
-        // });
-
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-        // this.cities.forEach((city) => {
-        //     console.log(this.name + ' has lived in ' + city)
-        // });
-        return cityMessages;
-    }
+var reset = function reset() {
+    count = 0;
+    renderCounterApp();
 };
 
-console.log(user.printPlacesLived());
+var appRoot = document.getElementById('app');
 
-var multiplier = {
-    numbers: [2, 5, 8, 4],
-    multiplyBy: 4,
-    multiply: function multiply() {
-        var _this2 = this;
-
-        return this.numbers.map(function (number) {
-            return number * _this2.multiplyBy;
-        });
-    }
+var renderCounterApp = function renderCounterApp() {
+    var templateTwo = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Count: ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: addOne },
+            '+1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: minusOne },
+            '-1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            'Reset'
+        )
+    );
+    ReactDOM.render(templateTwo, appRoot);
 };
 
-console.log(multiplier.multiply());
+renderCounterApp();
