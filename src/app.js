@@ -1,48 +1,65 @@
-console.log("App.js is running");
+class IndecisionApp extends React.Component {
+    render() {
+        return (
+            <div>
+                <Header />
+                <Action />
+                <Options />
+                <AddOption />
+            </div>
+        )
+    }
+}
+class Header extends React.Component{
+    render () {
+        return (
+            <div>
+                <h1>Indecision App</h1>
+                <h2>Dont let a computer control your life.</h2>
+            </div>
+        )
+    }
+}
 
-const app = {
-    title : 'Indecision App',
-    subtitle : 'React Tutorial',
-    options :  ['One', 'Two']
-};
-const template = 
-(
-    <div>
-        <h1>{app.title}</h1>
-        <p>{app.subtitle && app.subtitle}</p>
-        <p>{app.options.length > 0 ? 'Here are your options': 'No options'}</p>
-    </div>
-)
+class Action extends React.Component {
+    render () {
+        return (
+            <div>
+                <button>What should I do?</button>
+            </div>
+        )
+    }
+}
 
-let count = 0;
-const addOne = () => {
-    count++;
-    renderCounterApp();
-};
-const minusOne = () => {
-    count--;
-    renderCounterApp();
-};
+class Options extends React.Component {
+    render() {
+        return (
+            <div>
+                Options
+                <Option />
+            </div>
+        )
+    }
+}
 
-const reset = () => {
-    count = 0;
-    renderCounterApp();
-};
+class Option extends React.Component {
+    render () {
+        return (
+            <div>
+                This is option
+            </div>
+        )
+    }
+}
 
+class AddOption extends React.Component {
+    render () {
+        return (
+            <div>
+                Add Option
+            </div>
+        )
+    }
+}
 
-const appRoot = document.getElementById('app');
-
-
-const renderCounterApp = () => {
-    const templateTwo = (
-        <div>
-            <h1>Count: {count}</h1>
-            <button onClick={addOne}>+1</button>
-            <button onClick={minusOne}>-1</button>
-            <button onClick={reset}>Reset</button>
-        </div>
-    );
-    ReactDOM.render(templateTwo, appRoot);
-};
-
-renderCounterApp();
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
